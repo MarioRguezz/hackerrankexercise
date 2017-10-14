@@ -1,0 +1,100 @@
+Given N  lines of input, print the 3rd  character from each line as a new line of output. It is guaranteed that each of the  lines of input will have a  3rd character.
+Input Format
+A text file containing N lines of ASCII characters.
+Output Format
+For each line of input, print its  3rd character on a new line for a total of  N lines of output.
+cut -c3 /dev/stdin
+
+$ - because we need its value
+cut - because we want a particular character
+-c3 - because we want the third character
+
+
+Display the  2nd and 7th character from each line of text.
+Input Format
+A text file with N  lines of ASCII text only.
+The output should contain  N lines. Each line should contain just two characters at the 2nd and the 7th  position of the corresponding input line.
+
+cut -c2,7 /dev/stdin
+
+Display a range of characters starting at the  2nd position of a string and ending at the  7th position (both positions included).
+Input Format
+A text file containing  N lines of ASCII text only.
+The output should contain N  lines. 
+
+cut -c2-7
+
+
+Given a tab delimited file with several columns (tsv format) print the first three fields.
+Input Format
+A tab-separated file with lines of ASCII text only.
+cut -f-3
+
+
+Print the characters from thirteenth position to the end.
+Input Format
+A text file with lines of ASCII text only.
+
+Output Format
+The output should contain N lines. For each input line, print the characters from thirteenth position to the end.
+cut -c13-
+
+
+ARRAYS
+
+
+Given a list of countries, each on a new line, your task is to read them into an array and then display the entire array, with a space between each of the countries' names.
+Recommended References  Here's a great tutorial tutorial with useful examples related to arrays in Bash.
+Input Format
+A list of country names. The only characters present in the country names will be upper or lower case characters and hyphens.
+Output Format
+Display the entire array of country names, with a space between each of them.
+
+i=0
+while read line
+do
+array[$i]=$line
+((i+=1))
+done
+
+echo ${array[@]}
+
+
+Given a list of countries, each on a new line, your task is to read them into an array. Then slice the array and display only the elements lying between positions  and , both inclusive. Indexing starts from from .
+Input Format
+A list of country names. The only characters present in the country names will be upper or lower case characters and hyphens.
+Output Format
+Display the sliced portion of the array of country names, with a space between each of them.
+
+arr=($(cat))
+echo ${arr[@]:3:5}
+
+
+
+bjective  We now transition to some basic examples of bash scripting for the purpose of text processing and data munging. In this challenge, we practice reading and filtering an array.
+Resources  Here's a great tutorial with useful examples related to arrays in Bash.
+Task  You are given a list of countries, each on a new line. Your task is to read them into an array and then filter out (remove) all the names containing the letter 'a' or 'A'.
+Input Format
+The input format consists of a list of country names, each on a separate line. The only characters present in the country names will be upper or lower case characters and hyphens.
+Output Format
+From the given list, remove the names that contain 'a' or 'A' in them. If there are no names left after removing these characters, you should display a blank line.
+x=($(cat))
+declare -a pat=( ${x[@]/*a*} )
+echo ${pat[@]}
+
+
+
+An Introduction to 'awk'
+There are a lot of quick tricks which may be accomplished with the 'awk' interpreter. Among other things, awk may be used for a lot of text-munging and data-processing tasks which require some quick scripting work.
+Examples with awk  Print Examples  Conditionals with Awk
+Task  You are provided a file with four space-separated columns containing the scores of students in three subjects. The first column, contains a single character (A-Z) - the identifier of the student. The next three columns have three numbers (each between 0 and 100, both inclusive) which are the scores of the students in English, Mathematics and Science respectively.
+Your task is to identify the performance grade for each student. If the average of the three scores is 80 or more, the grade is 'A'. If the average is 60 or above, but less than 80, the grade is 'B'. If the average is 50 or above, but less than 60, the grade is 'C'. Otherwise the grade is 'FAIL'.
+Input Format
+There will be no more than 10 rows of data.  Each line will be in the format:  [Identifier][Score in English][Score in Math][Score in Science]
+Output Format
+For each row of data, append a space, a colon, followed by another space, and the grade. Observe the format showed in the sample output.
+
+awk '{ print $1, $2, $3, $4, ":", (($2+$3+$4)/3<50)?"FAIL":(($2+$3+$4)/3>=80)?"A":"B"}'
+
+
+
