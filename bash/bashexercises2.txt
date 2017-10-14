@@ -1,0 +1,119 @@
+Use for loops to display the natural numbers from 1 to 50 .
+
+for i in {1..50}
+do
+    echo $i
+done
+2   
+
+Given two integers, X  and Y , find their sum, difference, product, and quotient.
+
+read X
+read Y
+
+echo $((X + Y))
+echo $((X - Y))
+echo $((X * Y))
+echo $((X / Y))
+
+
+Given two integers, X and Y, identify whether X < Y  or  X > Y  or X = Y .
+
+Exactly one of the following lines: 
+- X is less than Y 
+- X is greater than Y 
+- X is equal to Y
+
+
+
+read X
+read Y
+if (($X > $Y)); then
+    echo X is greater than Y;
+elif (($X < $Y)); then
+    echo X is less than Y;
+else
+    echo X is equal to Y;
+fi
+
+
+
+
+Read in one character from the user (this may be 'Y', 'y', 'N', 'n'). If the character is 'Y' or 'y' display "YES". If the character is 'N' or 'n' display "NO". No other character will be provided as input.
+
+Input Format
+
+One character (this may be 'Y', 'y', 'N', 'n').
+
+Constraints
+
+-
+
+Output Format
+
+One word: either "YES" or "NO" (quotation marks excluded).
+
+read x
+if [[ $x == "y" || $x == "Y" ]]
+then
+echo "YES"
+else
+echo "NO"
+fi
+
+
+
+Given three integers (X, Y, and Z ) representing the three sides of a triangle, identify whether the triangle is Scalene, Isosceles, or Equilateral.
+
+Input Format
+
+Three integers, each on a new line.
+
+ 
+Sum of any two sides will be greater than the third.
+
+Output Format
+
+One word: either "SCALENE" or "EQUILATERAL" or "ISOSCELES" (quotation marks excluded).
+
+
+read X
+read Y
+read Z
+
+if (($X == $Y && $Y == $Z )); then
+    echo "EQUILATERAL"
+elif (($X != $Y && $Y != $Z && $X != $Z )); then
+    echo "SCALENE"
+else
+    echo "ISOSCELES"
+fi
+
+
+We provide you with expressions containing +,-,*,^, / and parenthesis. None of the numbers in the expression involved will exceed 999. 
+Your task is to evaluate the expression and display the output correct to 3 decimal places.
+https://www.lifewire.com/use-the-bc-calculator-in-scripts-2200588
+
+read X
+printf "%.3f" $(echo "scale=4;$X" | bc)
+
+
+
+Given N integers, compute their average correct to three decimal places.
+
+Input Format 
+The first line contains an integer,N . 
+ lines follow, each containing a single integer.
+
+Output Format 
+Display the average of the N integers, rounded off to three decimal places.
+
+
+read count
+for ((x=0; x <=count-1; x +=1))
+do
+    read val
+    total=$((total+val))
+done
+printf "%.3f" $(echo $total/$count | bc -l)
+
