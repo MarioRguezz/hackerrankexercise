@@ -49,21 +49,11 @@ for _ in 0..<t \{\
 \
     p.amIOld()\
 \
-    for i in 1...3 \{\
-        p.yearPasses()\
-    \}\
-\
+    for i in 1...3 {
+        p.yearPasses()
+}
+
     p.amIOld()\
-\
+
     print("")\
-\}\
-\
-\
-\
-\
-\
-\
-\
-\
-\
 }
